@@ -1,0 +1,33 @@
+version: '3.2'
+services:
+  mysql:
+    image: mysql:5.7
+    volumes:
+      - mysql_data_volume:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: keycloak
+      MYSQL_USER: keycloak
+      MYSQL_PASSWORD: password
+
+  keycloak-authenticator:
+    build: .
+    environment:
+      DB_VENDOR: MYSQL
+      DB_ADDR: mysql
+      DB_DATABASE: keycloak
+      DB_USER: keycloak
+      DB_PASSWORD: password
+      KEYCLOAK_USER: admin
+      KEYCLOAK_PASSWORD: Pa55w0rd
+      JDBC_PARAMS: "useSSL=false"
+    expose:
+      - '8080'
+    ports:
+      - '9990:8080'
+    depends_on:
+      - mysql
+
+volumes:
+  mysql_data_volume:
+    driver: local
