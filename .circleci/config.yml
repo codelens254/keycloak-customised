@@ -11,16 +11,16 @@ jobs:
       - run:
           name: Clean & Package
           command: mvn clean package
-
-  build_docker:
-    working_directory: ~/custom-keycloak
-    docker:
-      - image: circleci/openjdk:11.0.1-jdk
-
-    steps:
-      - checkout
-      - setup_remote_docker
       - run:
-          name: Build Custom Keycloak Docker image
+          name: Install Docker Compose
           command: |
-            docker build -f Dockerfile -t njuegitonga/custom-keycloak:$CIRCLE_SHA1 .
+            set -x
+            curl -L https://github.com/docker/compose/releases/download/1.11.2/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
+            chmod +x /usr/local/bin/docker-compose
+      - deploy:
+          name: Build and push Docker image
+          command: |
+            TAG="0.1.${CIRCLE_BUILD_NUM}"
+            docker build -t njuegitonga/custom-keycloak:$TAG .
+            docker login -u $DOCKER_USER -p $DOCKER_PASS
+            docker push circleci/cci-demo-docker:$TAG
