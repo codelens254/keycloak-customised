@@ -11,3 +11,16 @@ jobs:
       - run:
           name: Clean & Package
           command: mvn clean package
+
+  build_docker:
+    working_directory: ~/custom-keycloak
+    docker:
+      - image: circleci/openjdk:11.0.1-jdk
+
+    steps:
+      - checkout
+      - setup_remote_docker
+      - run:
+          name: Build Custom Keycloak Docker image
+          command: |
+            docker build -f Dockerfile -t njuegitonga/custom-keycloak:$CIRCLE_SHA1 .
