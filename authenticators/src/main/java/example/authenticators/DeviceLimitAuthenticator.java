@@ -17,7 +17,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceLimitAuthenticator extends AbstractDirectGrantAuthenticator {
-
     private static final Logger log = Logger.getLogger(DeviceLimitAuthenticator.class);
 
     @Override
