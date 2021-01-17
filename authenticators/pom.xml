@@ -5,7 +5,7 @@
     <parent>
         <artifactId>custom-keycloak</artifactId>
         <groupId>com.example</groupId>
-        <version>9.0.3</version>
+        <version>12.0.1</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
@@ -40,11 +40,17 @@
             <artifactId>keycloak-services</artifactId>
             <scope>provided</scope>
         </dependency>
+
     </dependencies>
 
     <build>
         <finalName>authenticators</finalName>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
             <plugin>
                 <groupId>org.wildfly.plugins</groupId>
                 <artifactId>wildfly-maven-plugin</artifactId>

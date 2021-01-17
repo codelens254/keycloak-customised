@@ -11,6 +11,7 @@ services:
       MYSQL_PASSWORD: password
 
   keycloak-authenticator:
+    container_name: custom-keycloak
     build: .
     environment:
       DB_VENDOR: MYSQL

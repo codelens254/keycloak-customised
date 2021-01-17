@@ -1,4 +1,4 @@
-FROM quay.io/keycloak/keycloak:9.0.3
+FROM quay.io/keycloak/keycloak:12.0.1
 
 ARG AUTHENTICATOR_JAR=authenticators/target/authenticators.jar
 
