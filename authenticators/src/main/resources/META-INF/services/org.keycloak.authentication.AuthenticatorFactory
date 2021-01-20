@@ -1,1 +1,2 @@
 example.authenticators.DeviceLimitAuthenticator
+codelens.authenticators.VerifyUsernameAuthenticatorFactory
