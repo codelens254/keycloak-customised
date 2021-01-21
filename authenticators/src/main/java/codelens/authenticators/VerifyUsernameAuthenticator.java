@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class VerifyUsernameAuthenticator implements Authenticator {
+
     public static final String PROVIDER_ID = "codelens-verify-username";
     public static final String VERIFY_USERNAME_FORM = "verify-username.ftl";
     public static final String EMAIL_NOT_FOUND = "emailNotFoundMessage";
@@ -37,8 +38,8 @@ public class VerifyUsernameAuthenticator implements Authenticator {
 
     @Override
     public void authenticate(AuthenticationFlowContext context) {
-        // display the verify username form ...
-        Response challenge = context.form().createForm(VERIFY_USERNAME_FORM);
+        Response challenge = context.form()
+                .createForm(VERIFY_USERNAME_FORM);
         context.challenge(challenge);
     }
 
@@ -47,8 +48,8 @@ public class VerifyUsernameAuthenticator implements Authenticator {
         MultivaluedMap<String, String> formData = context.getHttpRequest().getDecodedFormParameters();
         String email = formData.getFirst(RegistrationPage.FIELD_EMAIL);
 
-        // validate email exists
-        // here you could do a rest call to an external service and do your logic as required ... :)
+        // validate email exists ....
+        // you could a rest api call to an external service .....
         Customer customer = VALID_EMAILS.stream().filter(f -> f.getEmail().equals(email)).findFirst().orElse(null);
 
         if (customer == null) {
@@ -59,7 +60,6 @@ public class VerifyUsernameAuthenticator implements Authenticator {
             return;
         }
 
-        // username is valid .... create the user ...
         KeycloakSession session = context.getSession();
         RealmModel realm = context.getRealm();
         UserModel user = session.users().addUser(realm, email);
@@ -69,6 +69,7 @@ public class VerifyUsernameAuthenticator implements Authenticator {
         user.setLastName(customer.getLastName());
 
         context.setUser(user);
+
         context.getEvent().user(user);
         context.getEvent().success();
         context.newEvent().event(EventType.LOGIN);

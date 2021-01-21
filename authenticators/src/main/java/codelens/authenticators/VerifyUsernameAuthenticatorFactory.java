@@ -53,7 +53,6 @@ public class VerifyUsernameAuthenticatorFactory implements AuthenticatorFactory 
         return true;
     }
 
-
     @Override
     public List<ProviderConfigProperty> getConfigProperties() {
         final List<ProviderConfigProperty> configProperties = new ArrayList<>();

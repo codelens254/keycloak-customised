@@ -1,0 +1,7 @@
+CREATE CUSTOM AUTHENTICATORS
+
+    ACCEPTANCE CRITERIA
+        - Enter username
+        - Validate username against an external service
+        - Force user to update their password
+        - Done
