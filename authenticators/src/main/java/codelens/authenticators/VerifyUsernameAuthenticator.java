@@ -16,8 +16,8 @@ import org.keycloak.models.utils.FormMessage;
 
 import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
-import java.util.ArrayList;
-import java.util.List;
+
+import static codelens.utils.DeviceHelper.VALID_EMAILS;
 
 public class VerifyUsernameAuthenticator implements Authenticator {
 
@@ -27,14 +27,8 @@ public class VerifyUsernameAuthenticator implements Authenticator {
 
     private static final org.jboss.logging.Logger log = Logger.getLogger(VerifyUsernameAuthenticator.class);
 
-    private static List<Customer> VALID_EMAILS = new ArrayList<>();
 
-    static {
-        VALID_EMAILS.add(new Customer("JON", "DOE", "someone@gmail.com"));
-        VALID_EMAILS.add(new Customer("BLACK", "PANTHER", "joe@gmail.com"));
-        VALID_EMAILS.add(new Customer("WYCLIFFE", "BUSH", "eric@gmail.com"));
-        VALID_EMAILS.add(new Customer("PUTIN", "VLADIMIR", "putin@gmail.com"));
-    }
+
 
     @Override
     public void authenticate(AuthenticationFlowContext context) {
