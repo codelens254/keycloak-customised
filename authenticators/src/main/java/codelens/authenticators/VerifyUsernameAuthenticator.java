@@ -27,9 +27,6 @@ public class VerifyUsernameAuthenticator implements Authenticator {
 
     private static final org.jboss.logging.Logger log = Logger.getLogger(VerifyUsernameAuthenticator.class);
 
-
-
-
     @Override
     public void authenticate(AuthenticationFlowContext context) {
         Response challenge = context.form()
