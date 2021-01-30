@@ -1,0 +1,6 @@
+- Update PhoneNumber Required Action
+    - User Sets Their PhoneNumber (set-phonenumber.ftl)
+    - Generate an expiry OTP and associate it with the number entered.
+    - Send OTP to that entered phone number
+    - User to validate the OTP received (verify-otp.ftl)
+    - Store the phoneNumber as an attribute of the user ...

@@ -1,0 +1,9 @@
+Update Staff Number Required Action
+
+Acceptance Criteria
+
+ - Enter staff Number
+ - Validate against an external service,
+ - If successful add the user StaffNumber Attribute
+ - If failure, show the response message
+ - Done
